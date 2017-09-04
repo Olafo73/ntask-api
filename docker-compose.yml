@@ -1,0 +1,16 @@
+version: '3'
+services:
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: chirboa/node_api
+    volumes:
+            - .:/ntask-api
+    ports:
+      - "80:80"
+    networks:
+      - chirnet
+networks:
+  chirnet:
+    driver: "bridge"

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker build -f node/Dockerfile -t chirboa/node_api:latest ./node 

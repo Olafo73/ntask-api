@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+COMPOSER="docker-compose"
+
+if [ "$#" -gt 0 ];then
+	$COMPOSER run --rm \
+		-w /ntask-api \
+		node \
+		"$@"
+else
+	$COMPOSER ps
+fi
