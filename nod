@@ -4,14 +4,12 @@ COMPOSER="docker-compose"
 
 if [ "$#" -gt 0 ];then
 	if [ "$1" == "npm" ];then
-		echo "$@"
 		shift 1
 		$COMPOSER run --rm \
 			-w /ntask-api \
 			node \
 			npm "$@"
 	else
-		echo "$@"
 		$COMPOSER "$@"
 	fi
 else
