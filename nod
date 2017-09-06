@@ -9,6 +9,12 @@ if [ "$#" -gt 0 ];then
 			-w /ntask-api \
 			node \
 			npm "$@"
+	elif [ "$1" == "rs" ];then
+		$COMPOSER down
+		$COMPOSER up
+        elif [ "$1" == "rsd" ];then
+                $COMPOSER down
+                $COMPOSER up -d
 	else
 		$COMPOSER "$@"
 	fi

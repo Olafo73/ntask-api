@@ -17,6 +17,11 @@ module.exports = app => {
     })
     .post((req, res) => {
       // "/tasks": Save new task
+      Tasks.create(req.body)
+        .then(result => res.json(result))
+        .catch(error => {
+          res.status(412).json({msg: error.message});
+        });
     });
 
     app.route("/tasks/:id")
@@ -27,11 +32,32 @@ module.exports = app => {
       })
       .get((req, res) => {
         // "/tasks/1": Find a task
+        Tasks.findOne({where: req.params})
+          .then(result => {
+            if(result) {
+              res.json(result);
+            } else {
+              res.sendStatus(404);
+            }
+          })
+          .catch(error => {
+            res.status(412).json({msg: error.message});
+          });
       })
       .put((req, res) => {
         // "/tasks/1": Update a task
+        Tasks.update(req.body, {where: req.params})
+          .then(result => res.sendStatus(204))
+          .catch(error => {
+            res.status(412).json({msg: error.message});
+          });
       })
       .delete((req, res) => {
         // "/tasks/1": Delete a tesk
+        Tasks.destroy({where: req.params.id})
+          .then(result => res.sendStatus(204))
+          .catch(error => {
+            res.status(412).json({msg: error.message});
+          });
       });
 };
