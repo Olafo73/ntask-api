@@ -1,0 +1,4 @@
+--require test/helpers
+--reporter spec
+--compiler js:babel-register
+--slow 5000 =
