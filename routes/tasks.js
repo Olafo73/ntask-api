@@ -43,8 +43,9 @@ module.exports = app => {
           });
       })
       .delete((req, res) => {
-        // "/tasks/1": Delete a tesk
-        Tasks.destroy({where: req.params.id})
+        // "/tasks/1": Delete a task
+        console.log(req.params.id);
+        Tasks.destroy({where: {id: req.params.id} })
           .then(result => res.sendStatus(204))
           .catch(error => {
             res.status(412).json({msg: error.message});
