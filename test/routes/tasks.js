@@ -70,7 +70,7 @@ describe("Routes: Tasks", () => {
     describe("status 200", () => {
       it("returns one task", done => {
         //Test's logic
-        request.get(`tasks/${fakeTask.id}`)
+        request.get(`/tasks/${fakeTask.id}`)
           .set("Authorization", `JWT ${token}`)
           .expect(200)
           .end((err, res) => {
@@ -82,7 +82,7 @@ describe("Routes: Tasks", () => {
     describe("status 404", () => {
       it("throws an error when task does not exist", done => {
         //Test's logic
-        request.get("tasks/0")
+        request.get("/tasks/0")
           .set("Authorization", `JWT ${token}`)
           .expect(404)
           .end((err, res) => done(err));
@@ -93,7 +93,7 @@ describe("Routes: Tasks", () => {
     describe("status 204", () => {
       it("updates a task", done => {
         //Test's logic
-        request.put(`tasks/${fakeTask.id}`)
+        request.put(`/tasks/${fakeTask.id}`)
           .set("Authorization", `JWT ${token}`)
           .send({
             title: "Travel",
@@ -108,7 +108,7 @@ describe("Routes: Tasks", () => {
     describe("status 204", () => {
       it("removes a task", done => {
         //Test's logic
-        request.delete(`tasks/${fakeTask.id}`)
+        request.delete(`/tasks/${fakeTask.id}`)
           .set("Authorization", `JWT ${token}`)
           .expect(204)
           .end((err, res) => done(err));
